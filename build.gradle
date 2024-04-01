@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.nexign'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.26'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.reflections:reflections:0.10.2'
+    implementation ('org.springframework:spring-context:6.1.5')
+    implementation 'org.springframework:spring-jdbc:6.1.5'
+    implementation 'com.h2database:h2:2.2.224'
+    implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0-M1'
+
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
