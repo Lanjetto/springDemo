@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Form</title>
+</head>
+<body>
+<h1>Send a Message</h1>
+<form action="/submit-message" method="post" th:object="${messageForm}">
+    <label for="message">Message:</label><br>
+    <input type="text" id="message" name="message"><br><br>
+
+    <label for="city">Select a city:</label><br>
+    <select id="city" name="city">
+        <option value="New York">New York</option>
+        <option value="London">London</option>
+        <option value="Paris">Paris</option>
+    </select><br><br>
+
+    <button type="submit">Submit</button>
+
+    <span th:if="${notification}" th:text="${notification}"></span>
+</form>
+</body>
+</html>
