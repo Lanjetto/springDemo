@@ -17,10 +17,15 @@ public class MessageDAO {
     @PostConstruct
     public void initialize() {
 //        jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.execute("CREATE TABLE messages (id INT AUTO_INCREMENT PRIMARY KEY, text VARCHAR(255))");
+//        jdbcTemplate.execute("CREATE TABLE messages (id INT AUTO_INCREMENT PRIMARY KEY, text VARCHAR(255))");
     }
 
     public void send(String text) {
         jdbcTemplate.update("INSERT INTO messages (text) VALUES (?)", text);
+    }
+
+    public String getMessageById(Long id) {
+        String sql = "SELECT text FROM messages WHERE id = ?";
+        return jdbcTemplate.queryForObject(sql, String.class, id);
     }
 }

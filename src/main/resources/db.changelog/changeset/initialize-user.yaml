@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: init-user
+      author: Alex
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: example_user
+              - column:
+                  name: password
+                  value: example_password

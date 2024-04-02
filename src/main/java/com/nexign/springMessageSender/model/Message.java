@@ -1,26 +1,16 @@
 package com.nexign.springMessageSender.model;
 
-import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import jakarta.persistence.*;
 
-import java.util.Random;
-
-@Component
-@Scope("prototype")
+@Entity
+@Table(name = "messages")
 public class Message {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+//    @Column(name = "message_body")
     private String text;
-    @Value("${random.strings}")
-    private String[] randomStrings;
 
-
-    @PostConstruct
-    public void init() {
-        Random random = new Random();
-        int index = random.nextInt(randomStrings.length);
-        this.text = randomStrings[index];
-    }
 
     public String getText() {
         return text;
@@ -35,6 +25,5 @@ public class Message {
     }
 
     public Message() {
-        this.text = "Hello";
     }
 }

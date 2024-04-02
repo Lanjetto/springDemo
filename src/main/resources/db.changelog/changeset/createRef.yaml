@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-ref
+      author: Alex
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: message
+            baseColumnNames: sender_id
+            referencedTableName: users
+            referencedColumnNames: user_id
+            constraintName: fk_sender_id
+            foreignKeyConstraintName: fk_sender_id
+        - addForeignKeyConstraint:
+            baseTableName: message
+            baseColumnNames: receiver_id
+            referencedTableName: users
+            referencedColumnNames: user_id
+            constraintName: fk_receiver_id
+            foreignKeyConstraintName: fk_receiver_id
