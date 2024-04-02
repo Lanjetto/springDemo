@@ -16,22 +16,22 @@ public class FormController {
 
     private MessageSender messageSender;
 
-    @Autowired
-    public FormController(MessageSender messageSender) {
-        this.messageSender = messageSender;
-    }
-
-    @GetMapping
-    public String getForm() {
-        return "messageForm";
-    }
-    @PostMapping("/submit-message")
-    public String submitMessage(@RequestParam("message") String message,
-                                Model model) {
-        Message newMessage = new Message(message);
-        messageSender.send(newMessage);
-        model.addAttribute("notification", "Message sent successfully!");
-        return "messageForm";
-    }
+//    @Autowired
+//    public FormController(MessageSender messageSender) {
+//        this.messageSender = messageSender;
+//    }
+//
+//    @GetMapping
+//    public String getForm() {
+//        return "messageForm";
+//    }
+//    @PostMapping("/submit-message")
+//    public String submitMessage(@RequestParam("message") String message,
+//                                Model model) {
+//        Message newMessage = new Message(message);
+//        messageSender.send(newMessage);
+//        model.addAttribute("notification", "Message sent successfully!");
+//        return "messageForm";
+//    }
 
 }

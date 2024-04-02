@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/createUserTable.yaml
+  - include:
+      file: db/changelog/changeset/createMessageTable.yaml
+  - include:
+      file: db/changelog/changeset/createRef.yaml
+  - include:
+      file: db/changelog/changeset/initialize-user.yaml

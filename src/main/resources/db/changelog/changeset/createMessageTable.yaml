@@ -4,12 +4,12 @@ databaseChangeLog:
       author: Alex
       changes:
         - createTable:
-            tableName: messages
+            tableName: message
             columns:
               - column:
                   name: message_id
                   type: SERIAL
-                  constrains:
+                  constraints:
                     primaryKey: true
               - column:
                   name: sender_id

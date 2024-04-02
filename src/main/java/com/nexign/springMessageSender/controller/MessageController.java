@@ -1,13 +1,12 @@
 package com.nexign.springMessageSender.controller;
 
+import com.nexign.springMessageSender.entities.MessageEntity;
 import com.nexign.springMessageSender.model.Message;
 import com.nexign.springMessageSender.service.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MessageController {
@@ -19,7 +18,14 @@ public class MessageController {
 
     @GetMapping("/message")
     public ResponseEntity<Message> getMessageById(@RequestParam(name = "id") Long id) {
-        Message message = messageSender.getMessageById(id);
+        MessageEntity messageEntity = messageSender.getMessageById(id);
+        Message message = new Message(messageEntity.getMessageText());
         return ResponseEntity.ok(message);
+    }
+
+    @PostMapping("/sendMessage")
+    public ResponseEntity<?> sendMessage(@RequestBody Message message) {
+        messageSender.send(message.getText(), message.getTo());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
