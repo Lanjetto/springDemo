@@ -27,6 +27,7 @@ dependencies {
 
     implementation 'org.liquibase:liquibase-core:4.27.0'
 
+    implementation 'org.postgresql:postgresql:42.7.3'
 
 
 }

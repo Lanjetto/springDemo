@@ -5,22 +5,27 @@ import com.nexign.springMessageSender.model.CurrentUser;
 import com.nexign.springMessageSender.model.DestinationInterface;
 import com.nexign.springMessageSender.model.Message;
 import com.nexign.springMessageSender.repository.MessageRepository;
+import com.nexign.springMessageSender.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class MessageSender {
 
     private DestinationInterface destination;
     private MessageRepository messageRepository;
-
     private CurrentUser currentUser;
+    private UserRepository userRepository;
 
     @Autowired
-    public MessageSender(DestinationInterface destination, MessageRepository messageRepository, CurrentUser currentUser) {
+    public MessageSender(DestinationInterface destination, MessageRepository messageRepository, CurrentUser currentUser, UserRepository userRepository) {
         this.destination = destination;
         this.messageRepository = messageRepository;
         this.currentUser = currentUser;
+        this.userRepository = userRepository;
     }
     //IoC - inversion of control
 
@@ -33,6 +38,15 @@ public class MessageSender {
         Long userId = currentUser.getUserId();
         MessageEntity messageEntity = new MessageEntity(message, userId, to);
         messageRepository.save(messageEntity);
+
+    }
+
+    public List<Message> getUserMessages() {
+        List<MessageEntity> messageEntities =
+                messageRepository.findByReceiverId(currentUser.getUserId());
+        return messageEntities.stream()
+                .map(entity -> new Message(entity.getMessageText()))
+                .collect(Collectors.toList());
 
     }
 

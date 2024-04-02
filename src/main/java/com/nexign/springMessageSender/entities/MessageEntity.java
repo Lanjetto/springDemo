@@ -1,6 +1,7 @@
 package com.nexign.springMessageSender.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -21,6 +22,7 @@ public class MessageEntity {
     @Column(name = "message_text", nullable = false, columnDefinition = "TEXT")
     private String messageText;
 
+    @CreationTimestamp
     @Column(name = "timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime timestamp;
 

@@ -9,7 +9,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
-    @Column(name = "user_name")
+    @Column(name = "username")
     private String userName;
     private String password;
 
